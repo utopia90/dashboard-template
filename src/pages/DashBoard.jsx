@@ -19,9 +19,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-
-// Home ICON
-import HomeIcon from '@material-ui/icons/Home';
+import { MainListMenu, SecondaryListMenu } from '../components/MenuItems';
 
 
 // Componentes Propios
@@ -216,25 +214,13 @@ const DashBoard = () => {
                 <Divider />
                 {/* Listado de elementos de navgación del menú */}
                 <List>
-                    {/* TODO: Añadir los enlaces del menú Principal */}
-                    <ListItem>
-                        <ListItemIcon>
-                            <HomeIcon />
-                        </ListItemIcon>
-                        <ListItemText primary='Home' />
-                    </ListItem>
+                    {MainListMenu}
                 </List>
                 {/* Divider para separar los elementos del menú */}
                 <Divider />
                 {/* Listado de elementos de navegación del menú de Settings*/}
                 <List>
-                    {/* TODO: Añadir los enlaces del menú */}
-                    <ListItem>
-                        <ListItemIcon>
-                            <HomeIcon />
-                        </ListItemIcon>
-                        <ListItemText primary='Settings' />
-                    </ListItem>
+                    {SecondaryListMenu}
                 </List>
             </Drawer>
 
