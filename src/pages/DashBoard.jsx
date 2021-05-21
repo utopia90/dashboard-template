@@ -10,8 +10,13 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { useHistory } from 'react-router-dom';
 
 // Componentes de Material UI
+import { AppBar, IconButton, Toolbar, Typography, Badge } from '@material-ui/core';
 
 // Iconos de Material UI
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import NotificationIcon from '@material-ui/icons/Notifications';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 // Componentes Propios
 
@@ -146,9 +151,50 @@ const DashBoard = () => {
 
 
     return (
-        <div>
-            <h1>Dashboard Page</h1>
-            <CopyRight />
+        <div className={classes.root}>
+            <CssBaseline />
+            {/* Barra de Navegación Superior */}
+            <AppBar 
+                className={ clsx(classes.appBar, open && classes.appBarShift) }
+                position='absolute'
+            >   
+                <Toolbar className= { classes.toolbar }>
+
+                    {/* Icono para abrir el Drawer */}
+                    <IconButton
+                        className= { clsx(classes.menuButton, open && classes.menuButtonHidden) }
+                        edge = 'start'
+                        color='inherit'
+                        aria-label='open drawer'
+                        onClick = {handleDrawerOpen}
+                    >
+                        {/* Icono de Hamburger para plegar y desplegar */}
+                        <MenuIcon />
+                    </IconButton>
+                    {/* Nombre de la aplicación / empresa */}
+                    <Typography 
+                        component='h1' 
+                        variant='h6' 
+                        color='inherit' 
+                        className={classes.title}
+                        noWrap
+                    >
+                        Imagina ReactJS Dashboard
+                    </Typography>
+                    {/* Sección de Notificaciones para el Usuario */}
+                    <IconButton color='inherit'>
+                        <Badge color='secondary' badgeContent={10}>
+                            <NotificationIcon />
+                        </Badge>
+                    </IconButton>
+                    {/* Botón para Logout */}
+                    <IconButton color='inherit' onClick={logout}>
+                            <ExitToAppIcon />
+                    </IconButton>
+                </Toolbar>
+            </AppBar>
+            {/* Drawer */}
+
         </div>
     );
 }
