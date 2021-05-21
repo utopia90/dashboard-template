@@ -11,16 +11,14 @@ import { useHistory } from 'react-router-dom';
 
 // Componentes de Material UI
 import { AppBar, IconButton, Toolbar, Typography, Badge, 
-    Drawer, Divider, List, ListItem, ListItemIcon, ListItemText, 
-    Container, Grid, Paper } from '@material-ui/core';
+    Drawer, Divider, Container, Grid, Paper } from '@material-ui/core';
 
 // Iconos de Material UI
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { MainListMenu, SecondaryListMenu } from '../components/MenuItems';
-
+import MenuListItems from '../components/MenuListItems';        
 
 // Componentes Propios
 
@@ -118,11 +116,39 @@ const useStyles = makeStyles(theme => ({
     },
     // Container del Dashboard
     container: {
-        paddingTop: theme.spacing(4),
+        paddingTop: theme.spacing(12),
         paddingBottom: theme.spacing(4)
     }
 })
 )
+
+
+const mainMenuList = [
+    {
+        text: 'Home',
+        path: '/home',
+        icon: 'HOME'
+    },
+    {
+        text: 'Cart',
+        path: '/cart',
+        icon: 'CART'
+    },
+    {
+        text: 'Contacts',
+        path: '/contacts',
+        icon: 'CONTACTS'
+    }
+]
+
+
+const secondaryMenuList = [
+    {
+        text: 'Settings',
+        path: '/settings',
+        icon: 'SETTINGS'
+    },
+]
 
 
 const DashBoard = () => {
@@ -213,15 +239,11 @@ const DashBoard = () => {
                 {/* Divider para separar los elementos del menú */}
                 <Divider />
                 {/* Listado de elementos de navgación del menú */}
-                <List>
-                    {MainListMenu}
-                </List>
+                <MenuListItems list={mainMenuList} />
                 {/* Divider para separar los elementos del menú */}
                 <Divider />
                 {/* Listado de elementos de navegación del menú de Settings*/}
-                <List>
-                    {SecondaryListMenu}
-                </List>
+                <MenuListItems list={secondaryMenuList} />
             </Drawer>
 
             {/* El contenido del Dashboard */}
