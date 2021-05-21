@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import CopyRight from '../components/CopyRight';
 
 // Importaremos clsx para trabajar con las clases
@@ -7,6 +7,7 @@ import clsx from 'clsx';
 // MakeStyles y CassBaseLine --> Estilos con Material UI y el tema (theme) por defecto
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { useHistory } from 'react-router-dom';
 
 // Componentes de Material UI
 
@@ -110,16 +111,40 @@ const useStyles = makeStyles(theme => ({
         paddingTop: theme.spacing(4),
         paddingBottom: theme.spacing(4)
     }
-
 })
 )
 
 
-
-
-
-
 const DashBoard = () => {
+
+    // Clases para aplicar a los elementos
+    const classes = useStyles();
+
+    // History para manejarnos con las rutas y poder navegar
+    let history = useHistory()
+
+    // Un estado que controle si se muestra el menú o no
+    const [open, setOpen] = useState(true)
+
+    // Definimos la altura fija del Paper
+    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight)
+
+    // Método para controlar la Apertura del Drawer
+    const handleDrawerOpen = () => {
+        setOpen(true)
+    }
+
+    // Método para controlar el Cierre del Drawer
+    const handleDrawerClose = () => {
+        setOpen(false)
+    }
+
+    // Método para realizar un Logout y navegar a Login
+    const logout = () => {
+        history.push('/login')
+    }
+
+
     return (
         <div>
             <h1>Dashboard Page</h1>
