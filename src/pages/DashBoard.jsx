@@ -10,13 +10,19 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { useHistory } from 'react-router-dom';
 
 // Componentes de Material UI
-import { AppBar, IconButton, Toolbar, Typography, Badge } from '@material-ui/core';
+import { AppBar, IconButton, Toolbar, Typography, Badge, 
+    Drawer, Divider, List, ListItem, ListItemIcon, ListItemText, 
+    Container, Grid, Paper } from '@material-ui/core';
 
 // Iconos de Material UI
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
+// Home ICON
+import HomeIcon from '@material-ui/icons/Home';
+
 
 // Componentes Propios
 
@@ -40,6 +46,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         justifyContent: 'flex-end',
         padding: '0 8px',
+        // Añadimos todos los estilos de Toolbar por defecto
         ...theme.mixins.toolbar
     },
     // AppBar --> Barra de Navegación para desaparecer de la  pantalla
@@ -194,7 +201,71 @@ const DashBoard = () => {
                 </Toolbar>
             </AppBar>
             {/* Drawer */}
+            <Drawer
+                open={ open }
+                classes={{
+                    paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClosed)
+                }}
+            >
+                <div className={ classes.toolbarIcon }>
+                    <IconButton onClick={handleDrawerClose}>
+                        <ChevronLeftIcon />
+                    </IconButton>
+                </div>
+                {/* Divider para separar los elementos del menú */}
+                <Divider />
+                {/* Listado de elementos de navgación del menú */}
+                <List>
+                    {/* TODO: Añadir los enlaces del menú Principal */}
+                    <ListItem>
+                        <ListItemIcon>
+                            <HomeIcon />
+                        </ListItemIcon>
+                        <ListItemText primary='Home' />
+                    </ListItem>
+                </List>
+                {/* Divider para separar los elementos del menú */}
+                <Divider />
+                {/* Listado de elementos de navegación del menú de Settings*/}
+                <List>
+                    {/* TODO: Añadir los enlaces del menú */}
+                    <ListItem>
+                        <ListItemIcon>
+                            <HomeIcon />
+                        </ListItemIcon>
+                        <ListItemText primary='Settings' />
+                    </ListItem>
+                </List>
+            </Drawer>
 
+            {/* El contenido del Dashboard */}
+            <main className={classes.content}>
+                {/* Separamos el contenido del App Bar para poder verlo */}
+                <div className={ classes.appBarSpacer }>
+                    {/* Creamos el Container */}
+                    <Container className={classes.container} maxWidth='lg'>
+                        {/* Aquí vendrán nuestros componentes o Switch de rutas que toque */}
+                        <Grid container spacing={3}>
+                            <Grid item xs={12} md={4} lg={9}>
+                                <Paper className={ fixedHeightPaper }>
+                                    {/* TODO: Crear un componente que reciba props.children */}
+                                    <Typography>Primera caja</Typography>
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={12} md={4} lg={3}>
+                                <Paper className={ fixedHeightPaper }>
+                                    <Typography>Segunda caja</Typography>
+                                </Paper>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Paper className={ fixedHeightPaper }>
+                                    <Typography>Tercera caja</Typography>
+                                </Paper>
+                            </Grid>
+                        </Grid>
+                    </Container>
+                </div>
+            </main>
         </div>
     );
 }
